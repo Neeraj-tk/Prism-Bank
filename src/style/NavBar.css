@@ -1,0 +1,28 @@
+/* NavBar1.css */
+.navbar {
+    background-color: #3a4457;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: right;
+    min-height: 5vh;
+  }
+  
+  .nav-list {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .nav-item {
+    text-decoration: none;
+    padding: 15px 20px;
+    display: inline-block;
+    color: white ;
+    font-weight: bold;
+  }
+  
+  .nav-item:hover{
+    color: black;
+  }
