@@ -1,7 +1,8 @@
 import React,{useState} from "react";
+//require('../style/RegisterForInternetBanking.css');
 import '../style/RegisterForInternetBanking.css';
+import AuthenticationService from "../service/AuthenticationService";
 
-import axios from 'axios';
 
 // useState() is a ReactHook used in Functional Component to manage State
 
@@ -9,11 +10,11 @@ const RegisterForInternetBanking =() => {
     // variable, method which should be called when we update the state
 
     const[accountNumber, setAccountNumber] = useState('');
-    const[Password, setPassword] = useState('');
-    const[Password1, setPassword1] = useState('');
+    const[password, setPassword] = useState('');
+    const[password1, setPassword1] = useState('');
     
-    const[TransactionPassword, setTransactionPassword] = useState('');
-    const[TransactionPassword1, setTransactionPassword1] = useState('');
+    const[transactionPassword, setTransactionPassword] = useState('');
+    const[transactionPassword1, setTransactionPassword1] = useState('');
     
    // const[enterOTP, setEnterOTP] = useState('');
 
@@ -30,18 +31,18 @@ const RegisterForInternetBanking =() => {
       
           const registrationData = {
             accountNumber,
-            Password,
-            TransactionPassword
+            password,
+            transactionPassword
             
           };
       
           try {
   
-            await AuthenticationService.registerDealer(customer);
-            console.log(response.data); // Registration success message
+            await AuthenticationService.registerForInternetBanking(registrationData);
+            //console.log(response.data); // Registration success message
             alert("Registered Successfully");
             setTimeout(() => {
-              history('/login'); // navigates to Login Component
+              //history('/login'); // navigates to Login Component
           }, 3000);
           } catch (error) {
             console.error('Registration failed', error);
@@ -49,7 +50,7 @@ const RegisterForInternetBanking =() => {
         };
       
         const validateForm = () => {
-          if (!accountNumber || !Password || !Password1 || !TransactionPassword || !TransactionPassword1 ) {
+          if (!accountNumber || !password || !password1 || !transactionPassword || !transactionPassword1 ) {
             setErrorMessage('All fields are required.');
             return false;
           }
@@ -59,35 +60,35 @@ const RegisterForInternetBanking =() => {
     }
 
         return(
-        <div className="registration-container">
+        <div className="ib-container">
             <h2>Register for Internet Banking</h2>
             <form onSubmit={handleSubmit} className="registration-form">
-              <div className="form-group">
+              <div className="form-group-ib">
                 <label>Account Number:</label>
                 <input type="text" value={accountNumber} onChange={(e) => setAccountNumber(e.target.value)} required />
               </div>
-              <div className="form-group">
+              <div className="form-group-ib">
                 <label>Set Login Password:</label>
-                <input type="password" value={Password} onChange={(e) => setPassword(e.target.value)} required />
+                <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
               </div>
-              <div className="form-group">
+              <div className="form-group-ib">
                 <label>Confirm Login Password:</label>
-                <input type="password" value={Password1} onChange={(e) => setPassword1(e.target.value)} required />
-                {Password !== Password1 && <p>Passwords do not match.</p>}
+                <input type="password" value={password1} onChange={(e) => setPassword1(e.target.value)} required />
+                {password !== password1 && <p>Passwords do not match.</p>}
               </div>
-              <div className="form-group">
+              <div className="form-group-ib">
                 <label>Set Transaction Password:</label>
-                <input type="password" value={TransactionPassword} onChange={(e) => setTransactionPassword(e.target.value)} required />
+                <input type="password" value={transactionPassword} onChange={(e) => setTransactionPassword(e.target.value)} required />
               </div>
-              <div className="form-group">
+              <div className="form-group-ib">
                 <label>Confirm Transaction Password:</label>
-                <input type="password" value={TransactionPassword1} onChange={(e) => setTransactionPassword1(e.target.value)} required />
-                {TransactionPassword !== TransactionPassword1 && <p>Passwords do not match.</p>}
+                <input type="password" value={transactionPassword1} onChange={(e) => setTransactionPassword1(e.target.value)} required />
+                {transactionPassword !== transactionPassword1 && <p>Passwords do not match.</p>}
               </div>
               
               
               {errorMessage && <p className="error-message">{errorMessage}</p>}
-              <div className="form-group">
+              <div className="form-group-ib">
                 <button type="submit">Register</button>
               </div>
             </form>
