@@ -38,6 +38,17 @@ const Register = () => {
     const [successMessage, setSuccessMessage] = useState('');
     const [checked,setChecked]=useState(false);
 
+    function handleCheck(){
+        if(!checked)
+        {
+            setCustomer((prevCustomer)=>({
+                ...prevCustomer,
+                ['perAddress']:{...prevCustomer['resAddress']}
+            }));
+            setChecked(true);
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const validationErrors = validateForm();
@@ -206,19 +217,19 @@ const Register = () => {
                             <label for="inputAddress">Address Line 1</label>
                             <input type="text" value={customer.resAddress.line1}
                                 onChange={handleChange}
-                                className={errors.resAddress.line1 && 'error'} class="form-control" name="resAddress.line1" placeholder="1234 Main St" />
+                                className={errors['resAddress.line1'] && 'error'} class="form-control" name="resAddress.line1" placeholder="1234 Main St" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputAddress2">Address Line 2</label>
                             <input type="text" class="form-control" value={customer.resAddress.line2}
                                 onChange={handleChange}
-                                className={errors.resAddress.line2 && 'error'} name="resAddress.line2" placeholder="Apartment, studio, or floor" />
+                                className={errors['resAddress.line2'] && 'error'} name="resAddress.line2" placeholder="Apartment, studio, or floor" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputAddress3">Landmark</label>
                             <input type="text" value={customer.resAddress.landmark}
                                 onChange={handleChange}
-                                className={errors.resAddress.landmark && 'error'} class="form-control" name="resAddress.landmark" placeholder="1234 Main St" />
+                                className={errors['resAddress.landmark'] && 'error'} class="form-control" name="resAddress.landmark" placeholder="1234 Main St" />
                         </div>
                     </div>
                     <div class="form-row">
@@ -226,42 +237,42 @@ const Register = () => {
                             <label for="inputCity">City</label>
                             <input type="text"  value={customer.resAddress.city}
                                 onChange={handleChange}
-                                className={errors.resAddress.city && 'error'}class="form-control" name="resAddress.city" />
+                                className={errors['resAddress.city'] && 'error'}class="form-control" name="resAddress.city" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputState">State</label>
                             <input type="text" value={customer.resAddress.state}
                                 onChange={handleChange}
-                                className={errors.resAddress.state && 'error'} name="resAddress.state" class="form-control" />
+                                className={errors['resAddress.state'] && 'error'} name="resAddress.state" class="form-control" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="pin">Pincode</label>
                             <input type="text" value={customer.resAddress.pincode}
                                 onChange={handleChange}
-                                className={errors.resAddress.pincode && 'error'} class="form-control" name="resAddress.pincode" />
+                                className={errors['resAddress.pincode'] && 'error'} class="form-control" name="resAddress.pincode" />
                         </div>
                     </div>
                     <h3>Permanent Address</h3>
-                    <input type="checkbox" aria-label="Use same as permanent address" />
+                    <input type="checkbox" checked={checked} onChange={handleCheck} aria-label="Use same as permanent address" />
                     <label>&nbsp;Use same as current Address </label>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputAddress">Address Line 1</label>
                             <input type="text" value={customer.perAddress.line1}
                                 onChange={handleChange}
-                                className={errors.perAddress.line1 && 'error'} class="form-control" name="perAddress.line1" placeholder="1234 Main St" />
+                                className={errors['perAddress.line1'] && 'error'} class="form-control" name="perAddress.line1" placeholder="1234 Main St" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputAddress2">Address Line 2</label>
                             <input type="text" value={customer.perAddress.line2}
                                 onChange={handleChange}
-                                className={errors.perAddress.line2 && 'error'} class="form-control" name="perAddress.line2" placeholder="Apartment, studio, or floor" />
+                                className={errors['perAddress.line2'] && 'error'} class="form-control" name="perAddress.line2" placeholder="Apartment, studio, or floor" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputAddress3">Landmark</label>
                             <input type="text" value={customer.perAddress.landmark}
                                 onChange={handleChange}
-                                className={errors.perAddress.landmark && 'error'} class="form-control" name="perAddress.landmark" placeholder="1234 Main St" />
+                                className={errors['perAddress.landmark'] && 'error'} class="form-control" name="perAddress.landmark" placeholder="1234 Main St" />
                         </div>
                     </div>
                     <div class="form-row">
@@ -269,19 +280,19 @@ const Register = () => {
                             <label for="inputCity">City</label>
                             <input type="text"  value={customer.perAddress.city}
                                 onChange={handleChange}
-                                className={errors.perAddress.city && 'error'} class="form-control" name="perAddress.city" />
+                                className={errors['perAddress.city'] && 'error'} class="form-control" name="perAddress.city" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="inputState">State</label>
                             <input type="text"  value={customer.perAddress.state}
                                 onChange={handleChange}
-                                className={errors.perAddress.state && 'error'} name="perAddress.state" class="form-control" />
+                                className={errors['perAddress.state'] && 'error'} name="perAddress.state" class="form-control" />
                         </div>
                         <div class="form-group col-md-4">
                             <label for="pin">Pincode</label>
                             <input type="text" value={customer.perAddress.pincode}
                                 onChange={handleChange}
-                                className={errors.perAddress.pincode && 'error'} class="form-control" name="perAddress.pincode" />
+                                className={errors['perAddress.pincode'] && 'error'} class="form-control" name="perAddress.pincode" />
                         </div>
                     </div>
                     <br />
