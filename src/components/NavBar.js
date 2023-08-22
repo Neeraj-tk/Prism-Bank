@@ -5,6 +5,10 @@ import "../style/NavBar.css";
 const NavBar=()=>{
     return(
         <nav className="navbar">
+           <a class="navbar-brand" href="#">
+           <img src="images/logo.jpg"   width="60" height="50" class=" d-inline-block " />
+          &nbsp; Prism Bank
+           </a>
             <ul className="nav-list">
                 <li >
                     <Link to="/" className="nav-item">Home</Link>
