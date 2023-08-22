@@ -11,5 +11,15 @@ class AuthenticationService {
         }
     }
 
+    static async registerForInternetBanking(customer) {
+        try {
+            const response = await axios.post('http://localhost:8090/prismbank/ib/register', customer); // Adjust the API endpoint
+            return response.data;
+          } catch (error) {
+            console.error('Registration error', error);
+            throw new Error('An error occurred during registration.');
+        }
+    }
+
 }
  export default AuthenticationService;
