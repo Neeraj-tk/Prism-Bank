@@ -98,14 +98,14 @@ const Register = () => {
             validationErrors.email = 'Email is required.';
         }
         if (!customer.firstName) {
-            validationErrors.fname = 'First name is required.';
+            validationErrors.firstName = 'First name is required.';
         }
         else if (!/^[a-zA-Z]*$/.test(customer.firstName)) {
-            validationErrors.fname = 'Enter Alphabets Only';
+            validationErrors.firstName = 'Enter Alphabets Only';
         }
 
         if (!customer.lastName) {
-            validationErrors.lname = 'Last name is required.';
+            validationErrors.lastName = 'Last name is required.';
         }
 
         if (!customer.dob) {
@@ -116,10 +116,6 @@ const Register = () => {
             validationErrors.phoneNo = 'Phone number is required.';
         } else if (!/^\d{10}$/.test(customer.phoneNo)) {
             validationErrors.phoneNo = 'Invalid phone number. Please enter a 10-digit number.';
-        }
-
-        if (!customer.resaddress.street) {
-            validationErrors['address.street'] = 'Street is required.';
         }
 
         if (!customer.resaddress.city) {
