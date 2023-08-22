@@ -19,6 +19,9 @@ const NavBar=()=>{
                 <li >
                     <Link to="/login" className="nav-item" >Login</Link>
                 </li>
+                <li >
+                    <Link to="/netbanking" className="nav-item" >Internet Banking</Link>
+                </li>
             </ul>
         </nav>
     )
