@@ -36,10 +36,13 @@ const RegisterForInternetBanking =() => {
           };
       
           try {
-            const response = await 
-            axios.post('http://localhost:8088/prismbank/ib/register', registrationData);
+  
+            await AuthenticationService.registerDealer(customer);
             console.log(response.data); // Registration success message
             alert("Registered Successfully");
+            setTimeout(() => {
+              history('/login'); // navigates to Login Component
+          }, 3000);
           } catch (error) {
             console.error('Registration failed', error);
           }
