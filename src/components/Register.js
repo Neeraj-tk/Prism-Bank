@@ -125,9 +125,6 @@ const Register = () => {
         if (!customer.resaddress.pincode) {
             validationErrors['address.pincode'] = 'Pin Code is required.';
         }
-        if (!customer.peraddress.street) {
-            validationErrors['address.street'] = 'Street is required.';
-        }
 
         if (!customer.peraddress.city) {
             validationErrors['address.city'] = 'City is required.';
