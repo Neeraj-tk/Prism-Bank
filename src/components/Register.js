@@ -51,10 +51,10 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const validationErrors = validateForm();
-        if (Object.keys(validationErrors).length === 0) {
+       // const validationErrors = validateForm();
+        // if (Object.keys(validationErrors).length === 0) {
             try {
-                await AuthenticationService.registerDealer(customer);
+                await AuthenticationService.registerCustomer(customer);
                 setSuccessMessage('Registration successful!');
                 alert("Registration Successfull");
                 setTimeout(() => {
@@ -67,9 +67,9 @@ const Register = () => {
                 console.error('Registration error', error);
                 setSuccessMessage('An error occurred during registration.');
             }
-        } else {
-            setErrors(validationErrors);
-        }
+        // } else {
+        //     setErrors(validationErrors);
+        // }
     };
 
     const handleChange = (e) => {
@@ -118,20 +118,20 @@ const Register = () => {
             validationErrors.phoneNo = 'Invalid phone number. Please enter a 10-digit number.';
         }
 
-        if (!customer.resaddress.city) {
-            validationErrors['address.city'] = 'City is required.';
+        if (!customer.resAddress.city) {
+            validationErrors['resAddress.city'] = 'City is required.';
         }
 
-        if (!customer.resaddress.pincode) {
-            validationErrors['address.pincode'] = 'Pin Code is required.';
+        if (!customer.resAddress.pincode) {
+            validationErrors['resAddress.pincode'] = 'Pin Code is required.';
         }
 
-        if (!customer.peraddress.city) {
-            validationErrors['address.city'] = 'City is required.';
+        if (!customer.perAddress.city) {
+            validationErrors['perAddress.city'] = 'City is required.';
         }
 
-        if (!customer.peraddress.pincode) {
-            validationErrors['address.pincode'] = 'Pin Code is required.';
+        if (!customer.perAddress.pincode) {
+            validationErrors['perAddress.pincode'] = 'Pin Code is required.';
         }
 
         return validationErrors;
@@ -289,7 +289,7 @@ const Register = () => {
                         </div>
                     </div>
                     <br />
-                    <button type="button" class="btn btn-success btn-lg">Register</button>
+                    <button type="submit" class="btn btn-success btn-lg">Register</button>
                 </form>
             </div>
         </div>
