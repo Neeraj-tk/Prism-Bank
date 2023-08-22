@@ -1,7 +1,7 @@
-
 import "../style/Register.css";
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import AuthenticationService from "../service/AuthenticationService";
 
 const Register = () => {
     const history = useNavigate();
