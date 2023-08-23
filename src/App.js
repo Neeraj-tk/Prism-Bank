@@ -3,6 +3,8 @@ import HomePage from './components/HomePage';
 import NavBar from './components/NavBar';
 import Register from './components/Register';
 import { BrowserRouter as Router,Routes,Route} from "react-router-dom"; 
+import RegisterForInternetBanking from './components/RegisterForInternetBanking';
+import Login from './components/Login';
 
 
 function App() {
@@ -19,8 +21,9 @@ function App() {
           <Routes>
               <Route path='/' exact Component={HomePage}></Route>
               <Route path="/register" Component={Register}></Route>
-              {/* <Route path='/login' Component={Login}></Route>
-              <Route path='/product' Component={Product}></Route> */}
+              <Route path="/netbanking" Component={RegisterForInternetBanking}></Route>
+              <Route path='/login' Component={Login}></Route>
+              {/*<Route path='/product' Component={Product}></Route> */}
             </Routes>
           </Router>
         </div>
