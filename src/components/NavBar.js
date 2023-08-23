@@ -1,8 +1,18 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
 import { Link } from "react-router-dom";
 import "../style/NavBar.css";
 
 const NavBar=()=>{
+    const [loginState,setLoginState]=useState(false);
+    useEffect(()=>{
+        const token=sessionStorage.getItem("token");
+        if(token){
+            setLoginState(true);
+        }
+    });
+    const Logout=()=>{
+        sessionStorage.removeItem('token');
+    };
     return(
         <nav className="navbar">
            <a class="navbar-brand" href="#">
@@ -13,14 +23,16 @@ const NavBar=()=>{
                 <li >
                     <Link to="/" className="nav-item">Home</Link>
                 </li>
-                <li >
-                    <Link to="/register" className="nav-item">Register</Link>
-                </li>
-                <li >
+               
+                {!loginState && <li >
                     <Link to="/login" className="nav-item" >Login</Link>
-                </li>
+                </li> }
+                { loginState && <li onClick={Logout} className="nav-item">Logout</li>}
                 <li >
                     <Link to="/netbanking" className="nav-item" >Internet Banking</Link>
+                </li>
+                <li >
+                    <Link to="/register" className="nav-item">Register</Link>
                 </li>
             </ul>
         </nav>

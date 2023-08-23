@@ -29,6 +29,7 @@ const Login = () => {
             if (loginSuccess) {
                 console.log('Login Successful');
                 setSuccessMessage('Login successful. Redirecting...');
+                sessionStorage.setItem('token','yes');
                 setTimeout(() => {
                     history("/");
                 }, 2000);
