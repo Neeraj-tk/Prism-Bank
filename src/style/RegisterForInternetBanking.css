@@ -18,6 +18,11 @@
   
   label {
     font-weight: bold;
+    color: white;
+  }
+  
+  h2 {
+    color: white;
   }
   
   input {
