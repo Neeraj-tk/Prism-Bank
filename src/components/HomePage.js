@@ -28,7 +28,7 @@ const HomePage = () => {
           <p>Bank on the go with our convenient mobile app.</p>
         </div>
         <div className="feature">
-          <img src="/images/hp3.jpg" alt="Customer Support" />
+          <img src="/images/hp4.jpg" alt="Customer Support" />
           <h2>24/7 Customer Support</h2>
           <p>Our dedicated support team is here to assist you around the clock.</p>
         </div>
