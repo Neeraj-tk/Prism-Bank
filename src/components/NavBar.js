@@ -34,6 +34,9 @@ const NavBar=()=>{
                 <li >
                     <Link to="/register" className="nav-item">Register</Link>
                 </li>
+                <li >
+                    <Link to="/admin" className="nav-item">Admin Login</Link>
+                </li>
             </ul>
         </nav>
     )
