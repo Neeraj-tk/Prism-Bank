@@ -25,12 +25,10 @@ class AuthenticationService {
         try {
           const response = await axios.post('http://localhost:8090/prismbank/ib/login', customer);
           console.log('SAPI response:', response.data +"Hello"+response.data.success); 
-          if (response.data === true) {
-            // Call the setSessionAttribute method to store the session token or user info
-            //this.setSessionAttribute('sessionToken', response.data.sessionToken); // Adjust as needed
-            return true; // Return true for successful login
+          if (response.data.login) {
+            return response.data.accountNumber; 
           } else {
-            return false; // Return false for unsuccessful login
+            return null; 
           }
         } catch (error) {
           console.error('Login error', error);
