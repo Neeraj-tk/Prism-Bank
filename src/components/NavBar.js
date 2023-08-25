@@ -9,7 +9,7 @@ const NavBar=()=>{
         if(token){
             setLoginState(true);
         }
-    });
+    },[]);
     const Logout=()=>{
         sessionStorage.removeItem('token');
     };
