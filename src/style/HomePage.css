@@ -1,0 +1,84 @@
+/* HomePage.css */
+
+.home-page {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .header {
+    margin-bottom: 40px;
+    background-color: #38414a;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: antiquewhite;
+    font-size: xx-large;
+  }
+  
+  .features {
+    background-color: #38414a;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: aliceblue;
+  }
+  
+  .feature {
+    flex: 1;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .feature img {
+    width: 250px;
+    height: 200px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+  }
+  
+  .cta {
+    background-color: #38414a;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: antiquewhite;
+  }
+
+  .cta1 {
+    background-color: #38414a;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    color: antiquewhite;
+  }
+  
+  .btn-primary {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  h2 {
+    color: rgb(61, 156, 208);
+    margin-bottom: 10px;
+  }
+  
+  .slogan {
+    color: rgb(61, 156, 208);
+    font-weight: bold;
+    opacity: 0.8;
+    font-size: x-large;
+  }
+  
