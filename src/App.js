@@ -4,8 +4,12 @@ import HomePage from './components/HomePage';
 import NavBar from './components/NavBar';
 import Register from './components/Register';
 import { BrowserRouter as Router,Routes,Route} from "react-router-dom"; 
-import AddBeneficiary from './AddBeneficiary'; 
-import ManageBeneficiary from './ManageBeneficiary'; 
+import AddBeneficiary from './components/AddBeneficiary';
+import ManageBeneficiary from './components/ManageBeneficiary';
+import RegisterForInternetBanking from './components/RegisterForInternetBanking';
+import Login from './components/Login';
+import DashBoard from './components/DashBoard';
+import { useState } from 'react';
 
 
 function App() {
@@ -14,13 +18,6 @@ function App() {
   //const handleAddBeneficiary = (newBeneficiary) => {
   //  setBeneficiaries([...beneficiaries, newBeneficiary]);
   //};
-import RegisterForInternetBanking from './components/RegisterForInternetBanking';
-import Login from './components/Login';
-import DashBoard from './components/DashBoard';
-import { useState } from 'react';
-
-
-function App() {
   const [accountNo, setAccountNo] = useState(0);
   const [loggedIn,setLoggedIn]=useState(false);
   return (
@@ -36,10 +33,10 @@ function App() {
           <Routes>
               <Route path='/' exact element={<HomePage  />}></Route>
               <Route path="/register" Component={Register}></Route>
-              <Route path='/' element={<HomePage />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/add-beneficiary" Component={<AddBeneficiary />} /> 
-              <Route path="/manage-beneficiary" Component={<ManageBeneficiary />} /> 
+              {/* <Route path='/' element={<HomePage />} />
+              <Route path="/register" element={<Register />} /> */}
+              <Route path="/add-beneficiary" Component={AddBeneficiary } /> 
+              <Route path="/manage-beneficiary" Component={ManageBeneficiary} /> 
               {/* <Route path='/login' Component={Login}></Route>
               <Route path='/product' Component={Product}></Route> */}
               <Route path="/netbanking" Component={RegisterForInternetBanking}></Route>
