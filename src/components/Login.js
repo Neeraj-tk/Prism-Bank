@@ -4,9 +4,12 @@ import "../style/Login.css";
 import AuthenticationService from '../service/AuthenticationService';
 
 
-const Login = () => {
+const Login = (props) => {
     const history = useNavigate();  // Object to navigate from one component to another
 
+    if(props.loggedIn){
+        history("/profile");
+    }
     // defining state
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,14 +26,16 @@ const Login = () => {
             email,
             password
         };
-
         try {
-            const loginSuccess = await AuthenticationService.login(customer);
-            console.log('API response:', loginSuccess.data);
-            if (loginSuccess) {
+            const accountNumber = await AuthenticationService.login(customer);
+            if (accountNumber) {
+                console.log('Login Successful');
                 setSuccessMessage('Login successful. Redirecting...');
+                sessionStorage.setItem('token','yes');
+                props.setLoggedIn(true);
+                props.setAccountNo(accountNumber);
                 setTimeout(() => {
-
+                    history("/profile");
                 }, 2000);
             } else {
                 setErrorMessage('Invalid email or password.');
@@ -46,7 +51,7 @@ const Login = () => {
         <div className='login-container'>
            
             <br></br>
-            <form onSubmit={handleLogin}>
+            <form >
                 <div class="form-group">
                     <label >Email</label>
                     <input type="email" value={email}
@@ -55,11 +60,11 @@ const Login = () => {
                 </div>
                 <div class="form-group ">
                     <label >Password</label>
-                    <input type="email" value={password}
+                    <input type="password" value={password}
                         onChange={(e) => setPassword(e.target.value)}
-                        class="form-control" name="email" />
+                        class="form-control" name="password" />
                 </div>
-                <button type="submit" class="btn btn-success btn-lg">Login</button>
+                <button type="button" onClick={handleLogin} class="btn btn-success btn-lg">Login</button>
             </form>
             <br></br>
             <a>Forgot password ?</a>

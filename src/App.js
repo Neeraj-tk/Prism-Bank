@@ -14,6 +14,15 @@ function App() {
   //const handleAddBeneficiary = (newBeneficiary) => {
   //  setBeneficiaries([...beneficiaries, newBeneficiary]);
   //};
+import RegisterForInternetBanking from './components/RegisterForInternetBanking';
+import Login from './components/Login';
+import DashBoard from './components/DashBoard';
+import { useState } from 'react';
+
+
+function App() {
+  const [accountNo, setAccountNo] = useState(0);
+  const [loggedIn,setLoggedIn]=useState(false);
   return (
     <div className="App">
       {/* <header className="App-header">
@@ -23,9 +32,9 @@ function App() {
       <section>
         <div className='main'>
           <Router>
-            <NavBar ></NavBar>
+            <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} ></NavBar>
           <Routes>
-              <Route path='/' exact Component={HomePage}></Route>
+              <Route path='/' exact element={<HomePage  />}></Route>
               <Route path="/register" Component={Register}></Route>
               <Route path='/' element={<HomePage />} />
               <Route path="/register" element={<Register />} />
@@ -33,6 +42,9 @@ function App() {
               <Route path="/manage-beneficiary" Component={<ManageBeneficiary />} /> 
               {/* <Route path='/login' Component={Login}></Route>
               <Route path='/product' Component={Product}></Route> */}
+              <Route path="/netbanking" Component={RegisterForInternetBanking}></Route>
+              <Route path='/login' element ={<Login accountNo={accountNo} setAccountNo={setAccountNo} loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Login>}></Route>
+              <Route path='/profile' element ={<DashBoard accountNo={accountNo} setAccountNo={setAccountNo} loggedIn={loggedIn} setLoggedIn={setLoggedIn}></DashBoard>}></Route>
             </Routes>
           </Router>
         </div>
@@ -40,5 +52,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
