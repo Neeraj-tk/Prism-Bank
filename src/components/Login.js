@@ -4,9 +4,12 @@ import "../style/Login.css";
 import AuthenticationService from '../service/AuthenticationService';
 
 
-const Login = () => {
+const Login = (props) => {
     const history = useNavigate();  // Object to navigate from one component to another
 
+    if(props.loggedIn){
+        history("/profile");
+    }
     // defining state
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -24,14 +27,15 @@ const Login = () => {
             password
         };
         try {
-            const loginSuccess = await AuthenticationService.login(customer);
-            console.log('API response:', loginSuccess.data);
-            if (loginSuccess) {
+            const accountNumber = await AuthenticationService.login(customer);
+            if (accountNumber) {
                 console.log('Login Successful');
                 setSuccessMessage('Login successful. Redirecting...');
                 sessionStorage.setItem('token','yes');
+                props.setLoggedIn(true);
+                props.setAccountNo(accountNumber);
                 setTimeout(() => {
-                    history("/");
+                    history("/profile");
                 }, 2000);
             } else {
                 setErrorMessage('Invalid email or password.');
