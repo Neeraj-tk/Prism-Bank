@@ -57,7 +57,7 @@ const DashBoard = (props) => {
                     <div class="d-flex flex-row card">
                         <div class="p-2 data">
                             <div><span> <label>Account Number :&nbsp;</label>{accountNumber}</span></div>
-                            <div><span> <label>Customer Name:&nbsp; </label>{user.name}</span></div>
+                            <div><span> <label>Customer Name:&nbsp; </label>{user.firstName}&nbsp;{user.lastName}</span></div>
                             <div><span> <label>Email ID : &nbsp; </label>{user.email}</span></div>
                         </div>
                         <div class="p-2 data">
@@ -82,9 +82,9 @@ const DashBoard = (props) => {
                 <tbody>
                     {transactions.map(
                         t =>
-                            <tr key={t.trsansactionId}>
-                                <td> {t.trsansactionId} </td>
-                                <td> {t.senderAccount.accountNumber} </td>
+                            <tr key={t.transactionId}>
+                                <td> {t.transactionId} </td>
+                                <td> {t.senderAccount.accountNo} </td>
                                 <td> {t.timestamp} </td>
                                 <td> {t.mode} </td>
                                 <td> {t.amount} </td>

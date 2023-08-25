@@ -24,9 +24,9 @@ class AuthenticationService {
     static async login(customer) {
         try {
           const response = await axios.post('http://localhost:8090/prismbank/ib/login', customer);
-          console.log('SAPI response:', response.data +"Hello"+response.data.success); 
+          console.log('SAPI response:', response.data +"Hello"+response.data.login); 
           if (response.data.login) {
-            return response.data.accountNumber; 
+            return response.data.accountNo; 
           } else {
             return null; 
           }

@@ -7,7 +7,7 @@ import AuthenticationService from '../service/AuthenticationService';
 const Login = (props) => {
     const history = useNavigate();  // Object to navigate from one component to another
 
-    if(sessionStorage.getItem('token')){
+    if(props.loggedIn){
         history("/profile");
     }
     // defining state

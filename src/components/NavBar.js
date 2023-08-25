@@ -2,19 +2,8 @@ import React,{useEffect,useState} from "react";
 import { Link } from "react-router-dom";
 import "../style/NavBar.css";
 
-<<<<<<< HEAD
-const NavBar=()=>{
-    const [loginState,setLoginState]=useState(false);
-    useEffect(()=>{
-        const token=sessionStorage.getItem("token");
-        if(token){
-            setLoginState(true);
-        }
-    },[]);
-=======
 const NavBar=(props)=>{
    
->>>>>>> 09ba1fee676bc7be6216bfbaf050b99f02b9dd2a
     const Logout=()=>{
         sessionStorage.removeItem('token');
         props.setLoggedIn(false);
