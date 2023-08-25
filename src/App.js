@@ -5,6 +5,11 @@ import Register from './components/Register';
 import { BrowserRouter as Router,Routes,Route} from "react-router-dom"; 
 import RegisterForInternetBanking from './components/RegisterForInternetBanking';
 import Login from './components/Login';
+import Admin from './components/Admin';
+
+import {library} from '@fortawesome/fontawesome-svg-core';
+import { faTrash, faEdit, faList, faHome, faSignIn, faSignOut, faCameraRetro, faBomb, faCoffee, faPeopleGroup} from '@fortawesome/free-solid-svg-icons';
+library.add(faTrash,faEdit,faList, faHome, faSignIn, faSignOut, faCameraRetro, faBomb, faCoffee, faPeopleGroup);
 
 
 function App() {
@@ -23,7 +28,7 @@ function App() {
               <Route path="/register" Component={Register}></Route>
               <Route path="/netbanking" Component={RegisterForInternetBanking}></Route>
               <Route path='/login' Component={Login}></Route>
-              {/*<Route path='/product' Component={Product}></Route> */}
+              <Route path='/admin' Component={Admin}></Route> 
             </Routes>
           </Router>
         </div>
