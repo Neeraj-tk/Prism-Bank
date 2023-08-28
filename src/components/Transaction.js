@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useNavigate } from "react";
 import "../style/Transaction.css";
 import UserService from "../service/UserService";
 
 const Transaction = () => {
+
+    const history = useNavigate();
 
     const [beneficiaryList, setBeneficiaryList] = useState([1234, 12567, 2463786, 8234]);
     const [beneficiary, setBeneficiary] = useState(0);

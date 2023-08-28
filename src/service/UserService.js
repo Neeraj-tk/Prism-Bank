@@ -44,7 +44,7 @@ class UserService {
     }
     static async getBeneficiary(accountNumber){
         try{
-            const response=await axios.get('http://localhost:8090/prismbank/');
+            const response=await axios.get('http://localhost:8090/prismbank/account/getbeneficiary/'+accountNumber);
             return response;
         }catch(error){
             console.error('Error occured in Service method', error);
