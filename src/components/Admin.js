@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AdminService from '../service/AdminService';
 import AuthenticationService from '../service/AuthenticationService'; 
+import "../style/Admin.css";
 
 
 function Admin() {
@@ -46,16 +47,21 @@ function Admin() {
   };
 
   const deleteRequest = accountNo => {
-    AdminService.deleteRequest(accountNo).then(() => {
-       // setProducts(products.filter(product => product.id !== id));
-       fetchRequests(); // Refresh products list
-        setMessage('Account deleted successfully.'); 
-         // Clear the message after 3 seconds
-         setTimeout(() => {
-            setMessage('');
+    try {
+      AdminService.deleteRequest(accountNo).then(() => {
+        fetchRequests(); // Refresh products list
+        setMessage('Account deleted successfully.');
+        // Clear the message after 3 seconds
+        setTimeout(() => {
+          setMessage('');
         }, 2000);
-    });
-};
+      });
+    } catch (error) {
+      console.error('Error deleting account:', error);
+      // Handle the error as needed, e.g., display an error message to the user
+    }
+  };
+  
 
 const viewCustomer = async accountNo => {
     try {
@@ -112,7 +118,6 @@ const handleSubmit = event => {
   return (
     <div>
       <h1>Admin Dashboard</h1>
-      <div className="container">Welcome {user}</div>
       <br/>
       <h2 className="text-warning">Account Opening Requests</h2>
       <div className="row justify-content-center">
@@ -203,7 +208,7 @@ const handleSubmit = event => {
           <button type="submit">View Details</button>
         </form>
         {customerDetails && (
-          <div>
+          <div className="customer-details">
             <h3>Customer Details</h3>
             <p>Account Number: {customerDetails.accountNo}</p>
             <p>Name: {customerDetails.salutation} {customerDetails.firstName} {customerDetails.middleName} {customerDetails.lastName}</p>
@@ -233,7 +238,7 @@ const handleSubmit = event => {
       </div>
       <br/>
 
-      <div>
+      <div className="transaction">
         <h2 style={{ color: 'black' }}>Cash Deposit / Withdrawal</h2>
         <form onSubmit={handleTransactionSubmit}>
           <label style={{ color: 'blue' }}>
