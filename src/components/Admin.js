@@ -163,8 +163,8 @@ const handleSubmit = event => {
         </table>
         </div>
       {selectedCustomer && (
-        <div className="modal">
-          <div className="modal-content">
+       // <div className="modal">
+         <div className="customer-view">
             <span className="close" onClick={closeViewModal}>
               &times;
             </span>
@@ -192,7 +192,7 @@ const handleSubmit = event => {
             <p>Pincode: {selectedCustomer.perAddress.pincode}</p>
             {/* Display other customer details */}
           </div>
-        </div>
+       // </div>
       )}
 
       {/* Customer Details Form */}
