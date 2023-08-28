@@ -52,6 +52,37 @@ class UserService {
         }
     }
 
+    static async deleteBeneficiary(id){
+        try{
+            const response=await axios.delete('http://localhost:8090/prismbank/account/beneficiary/'+id);
+            return response.data;
+        }catch(error){
+            console.error('Error occured in Service method', error);
+            throw new error;
+        }
+    }
+
+    static async editBeneficiary(data){
+        try{
+            const response=await axios.put('http://localhost:8090/prismbank/account/updatebeneficiary',data);
+            return response.data;
+        }catch(error){
+            console.error('Error occured in Service method', error);
+            throw new error;
+        }
+    }
+
+    static async getBeneficiaryById(id){
+        try{
+            const response=await axios.get('http://localhost:8090/prismbank/account/beneficiary/'+id);
+            return response.data;
+        }catch(error){
+            console.error('Error occured in Service method', error);
+            throw new error;
+        }
+    }
+
+
     static async addBeneficiary(accountNumber,data){
         try{
             console.log(data);
