@@ -18,6 +18,7 @@ function Admin() {
   const [transactionType, setTransactionType] = useState('');
   const [transactionStatus, setTransactionStatus] = useState('');
   const [transactionError, setTransactionError] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     fetchRequests();
@@ -68,6 +69,7 @@ const viewCustomer = async accountNo => {
       const response = await AdminService.viewCustomer(Number(accountNo));
       console.log(response.data);
       setSelectedCustomer(response.data);
+      setIsModalOpen(true);
     } catch (error) {
         // Handle error
         console.error('Error fetching customer details:', error);
@@ -153,16 +155,16 @@ const handleSubmit = event => {
                     <FontAwesomeIcon icon="trash"></FontAwesomeIcon> Delete
                   </button>
                   &nbsp;
-                  <button className="btn btn-secondary" onClick={() => viewCustomer(customer.accountNo)}>
+                  {/* <button className="btn btn-secondary" onClick={() => viewCustomer(customer.accountNo)}>
                     View
-                  </button>
+                  </button> */}
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
         </div>
-      {selectedCustomer && (
+      {selectedCustomer && isModalOpen && (
        // <div className="modal">
          <div className="customer-view">
             <span className="close" onClick={closeViewModal}>
