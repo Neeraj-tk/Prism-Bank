@@ -117,7 +117,7 @@ const handleSubmit = event => {
 
   return (
     <div>
-      <h1>Admin Dashboard</h1>
+      <h1>ADMIN DASHBOARD</h1>
       <br/>
       <h2 className="text-warning">Account Opening Requests</h2>
       <div className="row justify-content-center">
@@ -168,6 +168,7 @@ const handleSubmit = event => {
             <span className="close" onClick={closeViewModal}>
               &times;
             </span>
+            <div className="modal-content">
             <h2 >View Customer Details </h2>
             <p>Account Number: {selectedCustomer.accountNo}</p>
             <p>Name: {selectedCustomer.salutation} {selectedCustomer.firstName} {selectedCustomer.middleName} {selectedCustomer.lastName}</p>
@@ -192,12 +193,12 @@ const handleSubmit = event => {
             <p>Pincode: {selectedCustomer.perAddress.pincode}</p>
             {/* Display other customer details */}
           </div>
-       // </div>
+        </div>
       )}
 
       {/* Customer Details Form */}
       <div className="customer-details-form"></div>
-      <div>
+      <div className="form">
         <h2 style={{ color: 'black' }}>View Customer Details</h2>
         <form onSubmit={handleSubmit}>
           <label style={{ color: 'blue' }}>
