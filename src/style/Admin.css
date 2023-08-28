@@ -128,7 +128,7 @@ body {
   
   
 
-  .customer-details-form {
+  /* .customer-details-form {
     margin-bottom: 40px;
     margin-left: 200px;
     margin-right: 200px;
@@ -139,19 +139,19 @@ body {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     color: antiquewhite;
     font-size: xx-large;
-  }
+  } */
 
   .customer-details {
     margin-bottom: 40px;
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 20px;
+    margin-right: 20px;
     box-align: center;
     background-color: #38414a;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    color: antiquewhite;
-    font-size: xx-large;
+    color: white;
+    font-size: large;
   }
 
   .transaction {
