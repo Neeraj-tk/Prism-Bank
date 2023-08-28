@@ -14,7 +14,7 @@ class UserService {
 
     static async getlast5Transaction(accountNumber) {
         try {
-            const response = await axios.get('http://localhost:8090/prismbank/transaction/all'); // Adjust the API endpoint
+            const response = await axios.get('http://localhost:8090/prismbank/transaction/'+accountNumber); // Adjust the API endpoint
             return response.data;
         } catch (error) {
             console.error('Error occured in Service method', error);
@@ -35,17 +35,18 @@ class UserService {
     }
     static async makePayment(data){
         try{
+            console.log(data);
             const response=await axios.post('http://localhost:8090/prismbank/transaction/create',data);
             return response;
         }catch(error){
             console.error('Error occured in Service method', error);
-            throw new Error('An error occurred while making payment');
+            throw error;
         }
     }
     static async getBeneficiary(accountNumber){
         try{
             const response=await axios.get('http://localhost:8090/prismbank/account/getbeneficiary/'+accountNumber);
-            return response;
+            return response.data;
         }catch(error){
             console.error('Error occured in Service method', error);
             throw new Error('An error occurred while fetching beneficiary list');

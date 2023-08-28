@@ -38,7 +38,7 @@ const DashBoard = (props) => {
     return (
         <div>
             <div class="d-flex flex-row">
-                <div class="p-3">
+                <div class="p-2">
                     <div className="menu-container">
                         <ul >
                             <li >
@@ -48,12 +48,12 @@ const DashBoard = (props) => {
                                 <Link to="/viewBeneficiary" className="nav-item" >Manage Beneficiary</Link>
                             </li>
                             <li >
-                                <Link to="/transfer" className="nav-item" >Transfer Money</Link>
+                                <Link to="/profile/transaction" className="nav-item" >Transfer Money</Link>
                             </li>
                         </ul>
                     </div>
                 </div>
-                <div class="p-3">
+                <div class="p-2">
                     <div class="d-flex flex-row card">
                         <div class="p-2 data">
                             <div><span> <label>Account Number :&nbsp;</label>{accountNumber}</span></div>
@@ -66,32 +66,38 @@ const DashBoard = (props) => {
                             <div><span> <label>Balance : &nbsp; </label>RS.{balance}</span></div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <table className="table table-success w-auto">
+                    <br></br>
+                    <table className="table table-success ">
                 <thead>
                     <tr className="table-danger">
                         <th>Transaction Id</th>
-                        <th> Account number</th>
-                        <th> Date</th>
+                        <th> To Account</th>
+                        <th> From Account</th>
                         <th> Type</th>
+                        <th>Remark</th>
                         <th> Amount</th>
-                        <th>Remarks</th>
+                        <th> Date & Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     {transactions.map(
                         t =>
-                            <tr key={t.transactionId}>
-                                <td> {t.transactionId} </td>
-                                <td> {t.senderAccount.accountNo} </td>
-                                <td> {t.timestamp} </td>
+                            <tr key={t.tid}>
+                                <td> {t.tid} </td>
+                                <td> {t.toAccount} </td>
+                                <td> {t.fromAccount} </td>
                                 <td> {t.mode} </td>
+                                <td>{t.remark}</td>
                                 <td> {t.amount} </td>
-                                <td>{t.remarks}</td>
+                                <td> {t.timestamp} </td>
                             </tr>
                     )}</tbody>
             </table>
+                </div>
+
+            </div>
+            
+               
 
         </div>
 

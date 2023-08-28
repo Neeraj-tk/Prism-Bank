@@ -1,11 +1,12 @@
-import React, { useState,useNavigate, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import {useNavigate} from "react-router-dom";
 import "../style/Transaction.css";
 import UserService from "../service/UserService";
 
 const Transaction = ({accountNo,loggedIn}) => {
 
     const history = useNavigate();
-    const [beneficiaryList, setBeneficiaryList] = useState([1234, 12567, 2463786, 8234]);
+    const [beneficiaryList, setBeneficiaryList] = useState([]);
     const [beneficiary, setBeneficiary] = useState(0);
     const [mode, setMode] = useState('');
     const [amount, setAmount] = useState(0.0);
@@ -23,20 +24,25 @@ const Transaction = ({accountNo,loggedIn}) => {
         });
     },[accountNo]);
 
+    function handleBeneficary(e){
+        setBeneficiary(e.target.value);
+    }
+
     function handleSubmit() {
         const data = {
-            fromAccount: { accountNo: 12423 },
-            toAccount: { accountNo: beneficiary },
-            amount, mode, remarks, transactionPassword
+            fromAccount:accountNo ,
+            toAccount: Number(beneficiary) ,
+            amount, mode, remark:remarks, transactionPassword
         };
         UserService.makePayment(data).then((res)=>{
-            setSuccessMessage(res);
+            setSuccessMessage(res.data);
         }).catch((error)=>{
-            setErrorMessage(error);
+            
+            setErrorMessage("An error occured during transaction "+error.response.data );
         })
         setTimeout(()=>{
             history("/profile");
-        },2000);
+        },5000);
     }
 
     return (
@@ -46,11 +52,17 @@ const Transaction = ({accountNo,loggedIn}) => {
                 <form className="form">
                     < div className="form-group">
                         <label>choose beneficiary</label>
-                        <select className="form-control" value={beneficiary} onChange={(e) => setBeneficiary(e.target.value)} name="beneficiary">
+                        <select className="form-control" value={beneficiary} onChange={handleBeneficary} name="beneficiary">
                             {beneficiaryList.map(item =>
-                                <option key={item}>{item}</option>
+                                <option key={item.bid} >{item.accountNo}</option>
                             )}
                         </select>
+                    </div>
+                    <div class="form-group">
+                        <label >Acount Number</label>
+                        <input value={beneficiary}
+                            onChange={handleBeneficary}
+                            type="text" class="form-control" name="beneficiary" />
                     </div>
                     < div className="form-group">
                         <label>choose mode of payment</label>
@@ -70,7 +82,7 @@ const Transaction = ({accountNo,loggedIn}) => {
                         <label >Transaction Password</label>
                         <input value={transactionPassword}
                             onChange={(e) => setTransactionPassword(e.target.value)}
-                            type="text" class="form-control" name="amount" />
+                            type="text" class="form-control" name="transactionPassword" />
                     </div>
                     <div class="form-group ">
                         <label >Remarks</label>

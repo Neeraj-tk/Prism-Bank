@@ -9,12 +9,15 @@
     margin: 0;
    
 }
+.table{
+   width: 850px;
+}
  .data{
     text-align: left;
  }
 
  .card{
-    width: 1000px;
+    width: 850px;
     background-color: rgb(43, 54, 68);
     border: 1px solid #ccc;
     color:white;
