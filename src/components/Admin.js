@@ -31,11 +31,14 @@ function Admin() {
   };
 
   const approveRequest = accountNo => {
-    AdminService.approveRequest(accountNo).then(response => {
+    const account ={
+      accountNo:Number(accountNo)
+    }
+    AdminService.approveRequest(account).then(response => {
       // Handle success or error here
       // For example, you could refresh the customer list after approving
       fetchRequests();
-      setMessage('Request approved successfully.'); 
+      setMessage('Request approved successfully : '+response.data); 
       setTimeout(() => {
         setMessage('');
       }, 2000);
@@ -56,7 +59,8 @@ function Admin() {
 
 const viewCustomer = async accountNo => {
     try {
-      const response = await AdminService.viewCustomer(accountNo);
+      const response = await AdminService.viewCustomer(Number(accountNo));
+      console.log(response.data);
       setSelectedCustomer(response.data);
     } catch (error) {
         // Handle error

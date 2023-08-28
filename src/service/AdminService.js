@@ -17,8 +17,9 @@ class AdminService{
         return axios.get(CUSTOMERS_REST_API_URL+"account/customer/"+accountNumber);
     }
 
-    static approveRequest(customer,accountNumber){
-        return axios.put(CUSTOMERS_REST_API_URL+"account/approve/"+accountNumber,customer);
+    static approveRequest(account){
+      //console.log(accountNumber)
+        return axios.post(CUSTOMERS_REST_API_URL+"account/approve",account);
     }
 
     static deleteRequest(accountNumber){
@@ -27,7 +28,7 @@ class AdminService{
 
     static depositCash(toAccount, amount) {
         const data = {
-          accountNumber: toAccount,
+          toAccount: toAccount,
           amount: amount
         };
         return axios.post(CUSTOMERS_REST_API_URL+"transaction/cashdeposit", data);
@@ -35,7 +36,7 @@ class AdminService{
     
       static withdrawCash(fromAccount, amount) {
         const data = {
-          accountNumber: fromAccount,
+          fromAccount: fromAccount,
           amount: amount
         };
         return axios.post(CUSTOMERS_REST_API_URL+"transaction/cashwithdraw", data);
