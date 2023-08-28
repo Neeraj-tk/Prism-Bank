@@ -32,7 +32,7 @@ function App() {
               <Route path='/' exact element={<HomePage  />}></Route>
               <Route path="/register" Component={Register}></Route>
               <Route path="/netbanking" Component={RegisterForInternetBanking}></Route>
-              <Route path="/profile/transaction" element={<Transaction setAccountNo={accountNo} loggedIn={loggedIn}></Transaction>}></Route>
+              <Route path="/profile/transaction" element={<Transaction accountNo={accountNo} loggedIn={loggedIn}></Transaction>}></Route>
               <Route path='/login' element ={<Login accountNo={accountNo} setAccountNo={setAccountNo} loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Login>}></Route>
               <Route path='/profile' element ={<DashBoard accountNo={accountNo} setAccountNo={setAccountNo} loggedIn={loggedIn} setLoggedIn={setLoggedIn}></DashBoard>}></Route>
               <Route path='/login' Component={Login}></Route>

@@ -1,11 +1,10 @@
-import React, { useState,useNavigate } from "react";
+import React, { useState,useNavigate, useEffect } from "react";
 import "../style/Transaction.css";
 import UserService from "../service/UserService";
 
-const Transaction = () => {
+const Transaction = ({accountNo,loggedIn}) => {
 
     const history = useNavigate();
-
     const [beneficiaryList, setBeneficiaryList] = useState([1234, 12567, 2463786, 8234]);
     const [beneficiary, setBeneficiary] = useState(0);
     const [mode, setMode] = useState('');
@@ -16,6 +15,13 @@ const Transaction = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
+    useEffect(()=>{
+        UserService.getBeneficiary(accountNo).then((res)=>{
+            setBeneficiaryList(res);
+        }).catch((error)=>{
+            console.log(error);
+        });
+    },[accountNo]);
 
     function handleSubmit() {
         const data = {
@@ -23,13 +29,11 @@ const Transaction = () => {
             toAccount: { accountNo: beneficiary },
             amount, mode, remarks, transactionPassword
         };
-        // UserService.makePayment(data);
-        if(true){
-            setSuccessMessage("Payment successfull !");
-        }
-        else{
-            setErrorMessage("Some error occured during payment, please try again later");
-        }
+        UserService.makePayment(data).then((res)=>{
+            setSuccessMessage(res);
+        }).catch((error)=>{
+            setErrorMessage(error);
+        })
         setTimeout(()=>{
             history("/profile");
         },2000);
