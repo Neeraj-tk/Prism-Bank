@@ -45,7 +45,7 @@ const DashBoard = (props) => {
                                 <Link to="/" className="nav-item">Account Summary</Link>
                             </li>
                             <li>
-                                <Link to="/viewBeneficiary" className="nav-item" >Manage Beneficiary</Link>
+                                <Link to="/profile/viewBeneficiary" className="nav-item" >Manage Beneficiary</Link>
                             </li>
                             <li>
                                 <Link to="/profile/addBeneficiary" className="nav-item">Add Beneficiary</Link>

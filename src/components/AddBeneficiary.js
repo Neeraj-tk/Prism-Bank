@@ -1,7 +1,36 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import UserService from '../service/UserService';
+import { useNavigate, useParams } from 'react-router-dom';
 
-function AddBeneficiary({accountNo,loggedIn}) {
+function AddBeneficiary({ accountNo, loggedIn }) {
+
+  
+
+  const history = useNavigate();
+
+  if(!loggedIn){
+    history("/login");
+  }
+
+  const [text, setText] = useState("Add");
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    if (id) {
+      UserService.getBeneficiaryById(id).then((res) => {
+        const temp = {
+          beneficiaryName: res.beneficiaryName, accountNo: res.accountNo,
+          relation: res.relation, nickName: res.nickName
+        }
+        setBeneficiary(temp);
+        setText("Update");
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  }, [id]);
+
 
   const [beneficiary, setBeneficiary] = useState({
     beneficiaryName: '',
@@ -34,25 +63,33 @@ function AddBeneficiary({accountNo,loggedIn}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const newErrors = validateForm(beneficiary);
     if (Object.keys(newErrors).length === 0) {
-      console.log('Submitting...');
-      // Perform actual submission or API calls here
-      console.log('New Beneficiary:', beneficiary);
-      UserService.addBeneficiary(accountNo,beneficiary).then((res)=>{
-        setSuccessMessage("Beneficiary added successfully !");
-      }).catch((error)=>{
-        setErrorMessage("Error occured "+error.response.data);
-      });
+
+      if (!id) {
+        UserService.addBeneficiary(accountNo, beneficiary).then((res) => {
+          setSuccessMessage("Beneficiary added successfully !");
+        }).catch((error) => {
+          setErrorMessage("Error occured " + error.response.data);
+        });
+      }
+      else {
+        const data = { ...beneficiary, bid: id };
+        console.log(data);
+        UserService.editBeneficiary(data).then((res) => {
+          setSuccessMessage("Beneficiary updated successfully !");
+        }).catch((error) => { setErrorMessage("Error occured " + error.response.data); });
+      }
       setBeneficiary({
         beneficiaryName: '',
         accountNo: '',
         relation: '',
         nickName: ''
       });
-      
+
     } else {
-      setErrorMessage('Could not add beneficiary :');
+      setErrorMessage('Could not ' + text + ' beneficiary :');
       setErrors(newErrors);
     }
   };
@@ -70,57 +107,57 @@ function AddBeneficiary({accountNo,loggedIn}) {
 
   return (
     <div>
-        <div className="transaction-container">
-      <h2>Add Beneficiary</h2>
-      <form >
-        <div>
-          <label>Beneficiary Name</label>
-          <input
-            type="text"
-            name="beneficiaryName"
-            value={beneficiary.beneficiaryName}
-            onChange={handleChange}
-            required
-          />
-          <span className="error">{errors.beneficiaryName}</span>
-        </div>
-        <div>
-          <label>Account Number</label>
-          <input
-            type="number"
-            name="accountNo"
-            value={beneficiary.accountNo}
-            onChange={handleChange}
-            required
-          />
-          <span className="error">{errors.accountNo}</span>
-        </div>
-        <div>
-          <label>Relation</label>
-          <input
-            type="text"
-            name="relation"
-            value={beneficiary.relation}
-            onChange={handleChange}
-          />
-          {/* No error span for optional field */}
-        </div>
-        <div>
-          <label>Nickname</label>
-          <input
-            type="text"
-            name="nickName"
-            value={beneficiary.nickName}
-            onChange={handleChange}
-            r
-          />
-          {/* No error span for optional field */}
-        </div>
-        <br></br>
-        <button type="button" onClick={handleSubmit} class="btn btn-success btn-lg">Add </button>
-                    {errorMessage && <p className="error-message">{errorMessage}</p>}
-                    {successMessage && <p className="success-message">{successMessage}</p>}
-      </form>
+      <div className="transaction-container">
+        <h2>{text} Beneficiary</h2>
+        <form >
+          <div>
+            <label>Beneficiary Name</label>
+            <input
+              type="text"
+              name="beneficiaryName"
+              value={beneficiary.beneficiaryName}
+              onChange={handleChange}
+              required
+            />
+            <span className="error">{errors.beneficiaryName}</span>
+          </div>
+          <div>
+            <label>Account Number</label>
+            <input
+              type="number"
+              name="accountNo"
+              value={beneficiary.accountNo}
+              onChange={handleChange}
+              required
+            />
+            <span className="error">{errors.accountNo}</span>
+          </div>
+          <div>
+            <label>Relation</label>
+            <input
+              type="text"
+              name="relation"
+              value={beneficiary.relation}
+              onChange={handleChange}
+            />
+            {/* No error span for optional field */}
+          </div>
+          <div>
+            <label>Nickname</label>
+            <input
+              type="text"
+              name="nickName"
+              value={beneficiary.nickName}
+              onChange={handleChange}
+              r
+            />
+            {/* No error span for optional field */}
+          </div>
+          <br></br>
+          <button type="button" onClick={handleSubmit} class="btn btn-success btn-lg">{text} </button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {successMessage && <p className="success-message">{successMessage}</p>}
+        </form>
       </div>
     </div>
   );
