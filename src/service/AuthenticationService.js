@@ -1,5 +1,7 @@
 import axios from "axios";
 
+export const USER_NAME_SESSION_ATTRIBUTE_NAME='authenticatedUser';
+
 class AuthenticationService {
     static async registerCustomer(customer) {
         try {
@@ -35,6 +37,14 @@ class AuthenticationService {
           throw new Error('An error occurred during login.');
         }
       }
+
+      static getLoggedInUserName() {
+        let user = sessionStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+      // console.log("Second"+user);
+        if (user === null) return ''
+        return user
+      }
+      
 
 }
  export default AuthenticationService;
