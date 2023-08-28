@@ -9,7 +9,7 @@ function Admin() {
   const [message, setMessage] = useState('');
   const [user, setUser] = useState('');
   const [selectedCustomer, setSelectedCustomer] = useState(null);
-  const [inputAccountNumber, setInputAccountNumber] = useState('');
+  const [inputAccountNo, setInputAccountNo] = useState('');
   const [customerDetails, setCustomerDetails] = useState(null);
   const [toAccount, setToAccount] = useState('');
   const [fromAccount, setFromAccount] = useState('');
@@ -30,8 +30,8 @@ function Admin() {
     });
   };
 
-  const approveRequest = accountNumber => {
-    AdminService.approveRequest(accountNumber).then(response => {
+  const approveRequest = accountNo => {
+    AdminService.approveRequest(accountNo).then(response => {
       // Handle success or error here
       // For example, you could refresh the customer list after approving
       fetchRequests();
@@ -42,8 +42,8 @@ function Admin() {
     });
   };
 
-  const deleteRequest = accountNumber => {
-    AdminService.deleteRequest(accountNumber).then(() => {
+  const deleteRequest = accountNo => {
+    AdminService.deleteRequest(accountNo).then(() => {
        // setProducts(products.filter(product => product.id !== id));
        fetchRequests(); // Refresh products list
         setMessage('Account deleted successfully.'); 
@@ -54,9 +54,9 @@ function Admin() {
     });
 };
 
-const viewCustomer = async accountNumber => {
+const viewCustomer = async accountNo => {
     try {
-      const response = await AdminService.viewCustomer(accountNumber);
+      const response = await AdminService.viewCustomer(accountNo);
       setSelectedCustomer(response.data);
     } catch (error) {
         // Handle error
@@ -64,9 +64,9 @@ const viewCustomer = async accountNumber => {
       }
     };
 
-const fetchCustomerDetails = async accountNumber => {
+const fetchCustomerDetails = async accountNo => {
   try {
-    const response = await AdminService.viewCustomer(accountNumber);
+    const response = await AdminService.viewCustomer(accountNo);
     setCustomerDetails(response.data);
   } catch (error) {
     // Handle error
@@ -76,7 +76,7 @@ const fetchCustomerDetails = async accountNumber => {
 
 const handleSubmit = event => {
   event.preventDefault();
-  fetchCustomerDetails(inputAccountNumber);
+  fetchCustomerDetails(inputAccountNo);
 };
 
     const closeViewModal = () => {
@@ -124,27 +124,27 @@ const handleSubmit = event => {
           </thead>
           <tbody>
             {customers.map(customer => (
-              <tr key={customer.id}>
-                <td>{customer.accountNumber}</td>
+              <tr key={customer.accountNo}>
+                <td>{customer.accountNo}</td>
                 <td>{customer.firstName} {customer.middleName} {customer.lastName}</td>
                 <td>{customer.email}</td>
                 <td>{customer.accountType}</td>
                 <td>
                   <button
                     className="btn btn-success"
-                    onClick={() => approveRequest(customer.id)}
+                    onClick={() => approveRequest(customer.accountNo)}
                   >
                     <FontAwesomeIcon icon="check"></FontAwesomeIcon> Approve
                   </button>
                   &nbsp;
                   <button
                     className="btn btn-danger"
-                    onClick={() => deleteRequest(customer.id)}
+                    onClick={() => deleteRequest(customer.accountNo)}
                   >
                     <FontAwesomeIcon icon="trash"></FontAwesomeIcon> Delete
                   </button>
                   &nbsp;
-                  <button className="btn btn-secondary" onClick={() => viewCustomer(customer.accountNumber)}>
+                  <button className="btn btn-secondary" onClick={() => viewCustomer(customer.accountNo)}>
                     View
                   </button>
                 </td>
@@ -160,7 +160,7 @@ const handleSubmit = event => {
               &times;
             </span>
             <h2 >View Customer Details </h2>
-            <p>Account Number: {selectedCustomer.accountNumber}</p>
+            <p>Account Number: {selectedCustomer.accountNo}</p>
             <p>Name: {selectedCustomer.salutation} {selectedCustomer.firstName} {selectedCustomer.middleName} {selectedCustomer.lastName}</p>
             <p>Email: {selectedCustomer.email}</p>
             <p>Father's Name: {selectedCustomer.fatherName}</p>
@@ -193,7 +193,7 @@ const handleSubmit = event => {
         <form onSubmit={handleSubmit}>
           <label style={{ color: 'blue' }}>
             Account Number:
-            <input type="text" value={inputAccountNumber} onChange={event => setInputAccountNumber(event.target.value)} />
+            <input type="text" value={inputAccountNo} onChange={event => setInputAccountNo(event.target.value)} />
           </label>
           <br/>
           <button type="submit">View Details</button>
@@ -201,7 +201,7 @@ const handleSubmit = event => {
         {customerDetails && (
           <div>
             <h3>Customer Details</h3>
-            <p>Account Number: {customerDetails.accountNumber}</p>
+            <p>Account Number: {customerDetails.accountNo}</p>
             <p>Name: {customerDetails.salutation} {customerDetails.firstName} {customerDetails.middleName} {customerDetails.lastName}</p>
             <p>Email: {customerDetails.email}</p>
             <p>Father's Name: {customerDetails.fatherName}</p>
