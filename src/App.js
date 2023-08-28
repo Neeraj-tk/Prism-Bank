@@ -14,6 +14,7 @@ import ViewBeneficiary from './components/ViewBeneficiary';
 import {library} from '@fortawesome/fontawesome-svg-core';
 import { faTrash, faEdit, faList, faHome, faSignIn, faSignOut, faCameraRetro, faBomb, faCoffee, faPeopleGroup} from '@fortawesome/free-solid-svg-icons';
 import AddBeneficiary from './components/AddBeneficiary';
+import AdminLogin from './components/AdminLogin';
 library.add(faTrash,faEdit,faList, faHome, faSignIn, faSignOut, faCameraRetro, faBomb, faCoffee, faPeopleGroup);
 
 
@@ -38,7 +39,7 @@ function App() {
               <Route path='/login' element ={<Login accountNo={accountNo} setAccountNo={setAccountNo} loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Login>}></Route>
               <Route path='/profile' element ={<DashBoard accountNo={accountNo} setAccountNo={setAccountNo} loggedIn={loggedIn} setLoggedIn={setLoggedIn}></DashBoard>}></Route>
               <Route path='/login' Component={Login}></Route>
-              <Route path='/admin' Component={Admin}></Route> 
+              <Route path='/admin' Component={AdminLogin}></Route> 
               <Route path='/profile/addBeneficiary/' element={<AddBeneficiary accountNo={accountNo} loggedIn={loggedIn}></AddBeneficiary>}></Route>
               <Route path='/profile/viewBeneficiary' element={<ViewBeneficiary accountNo={accountNo} loggedIn={loggedIn}></ViewBeneficiary>}></Route>
               <Route path='/profile/updateBeneficiary/:id' element={<AddBeneficiary accountNo={accountNo} loggedIn={loggedIn}></AddBeneficiary>}></Route>
