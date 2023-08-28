@@ -11,19 +11,19 @@ const AdminLogin = (props) => {
     }
 
     // Define state
-    const [userId, setuserId] = useState('');
+    const [userid, setuserId] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
 
     const handleLogin = async () => {
-        if (!userId || !password) {
+        if (!userid || !password) {
             setErrorMessage('Please enter both email and password.');
             return;
         }
 
         const admin = {
-            userId,
+            userid,
             password
         };
         try {
@@ -33,7 +33,7 @@ const AdminLogin = (props) => {
                 console.log('Admin Login Successful');
                 setSuccessMessage('Admin login successful. Redirecting...');
                 sessionStorage.setItem('adminToken', 'yes');
-                props.setLoggedIn(true);
+                props.loggedIn = true;
                 setTimeout(() => {
                     history("/admin"); // Redirect to admin dashboard
                 }, 2000);
@@ -54,10 +54,10 @@ const AdminLogin = (props) => {
                     <label>User ID</label>
                     <input
                         type="text"
-                        value={userId}
+                        value={userid}
                         onChange={(e) => setuserId(e.target.value)}
                         className="form-control"
-                        name="userId"
+                        name="userid"
                        
                     />
                 </div>

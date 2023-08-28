@@ -27,7 +27,7 @@ class AuthenticationService {
     try {
       const response = await axios.post('http://localhost:8090/prismbank/admin/login', admin);
       console.log('Admin login response:', response.data); 
-      if (response.data.login) {
+      if (response.data) {
         return true; 
       } else {
         return false; 
