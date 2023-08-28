@@ -23,12 +23,28 @@ class AuthenticationService {
         }
     }
 
-    static async login(customer) {
+    static async adminLogin(admin) {
+    try {
+      const response = await axios.post('http://localhost:8090/prismbank/admin/login', admin);
+      console.log('Admin login response:', response.data); 
+      if (response.data.login) {
+        return true; 
+      } else {
+        return false; 
+      }
+    } catch (error) {
+      console.error('Admin Login error', error);
+      throw new Error('An error occurred during admin login.');
+    }
+  }
+
+
+      static async login(admin) {
         try {
-          const response = await axios.post('http://localhost:8090/prismbank/ib/login', customer);
+          const response = await axios.post('http://localhost:8090/prismbank/admin/login', admin);
           console.log('SAPI response:', response.data +"Hello"+response.data.login); 
           if (response.data.login) {
-            return response.data.accountNo; 
+            return response.data.acc; 
           } else {
             return null; 
           }
