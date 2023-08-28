@@ -1,0 +1,36 @@
+.menu-container{
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(43, 54, 68);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color:antiquewhite;
+    margin: 0;
+   
+}
+.table{
+   width: 850px;
+}
+ .data{
+    text-align: left;
+ }
+
+ .card{
+    width: 850px;
+    background-color: rgb(43, 54, 68);
+    border: 1px solid #ccc;
+    color:white;
+    font-size: 25px;
+ }
+ .balance{
+    color: green;
+    font-size: 45px;
+    font-weight: bold;
+ }
+ 
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
