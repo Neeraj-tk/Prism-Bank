@@ -77,6 +77,7 @@ const DashBoard = (props) => {
                         <th> To Account</th>
                         <th> From Account</th>
                         <th> Type</th>
+                        <th> Mode</th>
                         <th>Remark</th>
                         <th> Amount</th>
                         <th> Date & Time</th>
@@ -89,6 +90,7 @@ const DashBoard = (props) => {
                                 <td> {t.tid} </td>
                                 <td> {t.toAccount} </td>
                                 <td> {t.fromAccount} </td>
+                                <td> {t.type} </td>
                                 <td> {t.mode} </td>
                                 <td>{t.remark}</td>
                                 <td> {t.amount} </td>
