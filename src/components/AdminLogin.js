@@ -46,6 +46,14 @@ const AdminLogin = (props) => {
         }
     };
 
+    useEffect(() => {
+        if (successMessage) {
+            setTimeout(() => {
+                history("/admin"); // Redirect to admin dashboard
+            }, 2000);
+        }
+    }, [successMessage]);
+
     return (
         <div className='login-container'>
             <br />
