@@ -12,6 +12,7 @@ import Admin from './components/Admin';
 
 import {library} from '@fortawesome/fontawesome-svg-core';
 import { faTrash, faEdit, faList, faHome, faSignIn, faSignOut, faCameraRetro, faBomb, faCoffee, faPeopleGroup} from '@fortawesome/free-solid-svg-icons';
+import AddBeneficiary from './components/AddBeneficiary';
 library.add(faTrash,faEdit,faList, faHome, faSignIn, faSignOut, faCameraRetro, faBomb, faCoffee, faPeopleGroup);
 
 
@@ -37,6 +38,7 @@ function App() {
               <Route path='/profile' element ={<DashBoard accountNo={accountNo} setAccountNo={setAccountNo} loggedIn={loggedIn} setLoggedIn={setLoggedIn}></DashBoard>}></Route>
               <Route path='/login' Component={Login}></Route>
               <Route path='/admin' Component={Admin}></Route> 
+              <Route path='/profile/addBeneficiary' element={<AddBeneficiary accountNo={accountNo} loggedIn={loggedIn}></AddBeneficiary>}></Route>
             </Routes>
           </Router>
         </div>

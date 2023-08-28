@@ -35,7 +35,6 @@ class UserService {
     }
     static async makePayment(data){
         try{
-            console.log(data);
             const response=await axios.post('http://localhost:8090/prismbank/transaction/create',data);
             return response;
         }catch(error){
@@ -50,6 +49,17 @@ class UserService {
         }catch(error){
             console.error('Error occured in Service method', error);
             throw new Error('An error occurred while fetching beneficiary list');
+        }
+    }
+
+    static async addBeneficiary(accountNumber,data){
+        try{
+            console.log(data);
+            const response=await axios.post('http://localhost:8090/prismbank/transaction/create',data);
+            return response;
+        }catch(error){
+            console.error('Error occured in Service method', error);
+            throw error;
         }
     }
 }
