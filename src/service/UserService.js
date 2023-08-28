@@ -55,8 +55,8 @@ class UserService {
     static async addBeneficiary(accountNumber,data){
         try{
             console.log(data);
-            const response=await axios.post('http://localhost:8090/prismbank/transaction/create',data);
-            return response;
+            const response=await axios.post('http://localhost:8090/prismbank/account/addbeneficiary/'+accountNumber,data);
+            return response.data;
         }catch(error){
             console.error('Error occured in Service method', error);
             throw error;

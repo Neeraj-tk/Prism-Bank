@@ -1,19 +1,20 @@
 import React, { useState } from 'react';
+import UserService from '../service/UserService';
 
 function AddBeneficiary({accountNo,loggedIn}) {
 
   const [beneficiary, setBeneficiary] = useState({
     beneficiaryName: '',
-    accountNumber: '',
+    accountNo: '',
     relation: '',
     nickname: ''
   });
 
   const [errors, setErrors] = useState({
     beneficiaryName: '',
-    accountNumber: '',
+    accountNo: '',
     relation: '',
-    nickname: ''
+    nickName: ''
   });
 
   const [errorMessage, setErrorMessage] = useState('');
@@ -38,15 +39,20 @@ function AddBeneficiary({accountNo,loggedIn}) {
       console.log('Submitting...');
       // Perform actual submission or API calls here
       console.log('New Beneficiary:', beneficiary);
+      UserService.addBeneficiary(accountNo,beneficiary).then((res)=>{
+        setSuccessMessage("Beneficiary added successfully !");
+      }).catch((error)=>{
+        setErrorMessage("Error occured "+error.response.data);
+      });
       setBeneficiary({
         beneficiaryName: '',
-        accountNumber: '',
+        accountNo: '',
         relation: '',
-        nickname: ''
+        nickName: ''
       });
       
     } else {
-      console.log('Could not add beneficiary :', newErrors);
+      setErrorMessage('Could not add beneficiary :');
       setErrors(newErrors);
     }
   };
@@ -56,10 +62,9 @@ function AddBeneficiary({accountNo,loggedIn}) {
     if (!formData.beneficiaryName) {
       errors.beneficiaryName = 'Beneficiary Name is required.';
     }
-    if (!formData.accountNumber) {
+    if (!formData.accountNo) {
       errors.accountNumber = 'Account Number is required.';
     }
-    
     return errors;
   };
 
@@ -82,13 +87,13 @@ function AddBeneficiary({accountNo,loggedIn}) {
         <div>
           <label>Account Number</label>
           <input
-            type="text"
-            name="accountNumber"
-            value={beneficiary.accountNumber}
+            type="number"
+            name="accountNo"
+            value={beneficiary.accountNo}
             onChange={handleChange}
             required
           />
-          <span className="error">{errors.accountNumber}</span>
+          <span className="error">{errors.accountNo}</span>
         </div>
         <div>
           <label>Relation</label>
@@ -104,8 +109,8 @@ function AddBeneficiary({accountNo,loggedIn}) {
           <label>Nickname</label>
           <input
             type="text"
-            name="nickname"
-            value={beneficiary.nickname}
+            name="nickName"
+            value={beneficiary.nickName}
             onChange={handleChange}
             r
           />
