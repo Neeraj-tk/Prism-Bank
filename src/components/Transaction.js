@@ -53,6 +53,7 @@ const Transaction = ({accountNo,loggedIn}) => {
                     < div className="form-group">
                         <label>choose beneficiary</label>
                         <select className="form-control" value={beneficiary} onChange={handleBeneficary} name="beneficiary">
+                        <option value="">Select Type</option>
                             {beneficiaryList.map(item =>
                                 <option key={item.bid} >{item.accountNo}</option>
                             )}
@@ -67,6 +68,7 @@ const Transaction = ({accountNo,loggedIn}) => {
                     < div className="form-group">
                         <label>choose mode of payment</label>
                         <select className="form-control" value={mode} onChange={(e) => setMode(e.target.value)} name="mode">
+                            <option value="">Select Type</option>
                             <option>IMPS</option>
                             <option>RTGS</option>
                             <option>NEFT</option>

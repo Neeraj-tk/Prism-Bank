@@ -13,6 +13,7 @@ const Register = () => {
         lastName: "",
         fatherName: "",
         aadharNumber: "",
+        accountType:"",
         dob: "",
         email: "",
         phoneNo: "",
@@ -150,6 +151,7 @@ const Register = () => {
                             <select class="form-control" name="salutation" value={customer.salutation}
                                 onChange={handleChange}
                                 className={errors.salutation && 'error'}>
+                                <option value="">Select Type</option>
                                 <option>Mr</option>
                                 <option>Mrs</option>
                                 <option>Ms</option>
@@ -175,13 +177,24 @@ const Register = () => {
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="faname">Father Name</label>
                             <input type="text" onChange={handleChange} value={customer.fatherName} className={errors.fatherName &&'error'} class="form-control" name="fatherName" />
                         </div>
-                        <div class="form-group col-md-6">
+                        <div class="form-group col-md-4">
                             <label for="aadhar">Aadhar Number</label>
                             <input type="number" class="form-control" onChange={handleChange} value ={customer.aadharNumber} className={errors.aadharNumber && 'error'} name="aadharNumber" />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label >Account type</label>
+                            <select class="form-control" name="accountType" value={customer.accountType}
+                                onChange={handleChange}
+                                className={errors.accountType && 'error'}>
+                                <option value="">Select Type</option>
+                                <option>savings</option>
+                                <option>current</option>
+                                <option>salary</option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-row">
@@ -246,8 +259,8 @@ const Register = () => {
                         </div>
                     </div>
                     <h3>Permanent Address</h3>
-                    <input type="checkbox" checked={checked} onChange={handleCheck} aria-label="Use same as permanent address" />
-                    <label>&nbsp;Use same as current Address </label>
+                    <span><input type="checkbox" checked={checked} onChange={handleCheck} aria-label="Use same as permanent address" />
+                    <label>&nbsp;Use same as current Address </label></span>
                     <div class="form-row">
                         <div class="form-group col-md-4">
                             <label for="inputAddress">Address Line 1</label>
