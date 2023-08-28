@@ -17,6 +17,7 @@ const AdminLogin = (props) => {
     const [successMessage, setSuccessMessage] = useState('');
 
     const handleLogin = async () => {
+        
         if (!userid || !password) {
             setErrorMessage('Please enter both email and password.');
             return;
@@ -33,7 +34,7 @@ const AdminLogin = (props) => {
                 console.log('Admin Login Successful');
                 setSuccessMessage('Admin login successful. Redirecting...');
                 sessionStorage.setItem('adminToken', 'yes');
-                props.loggedIn = true;
+                props.setLoggedIn(true);
                 setTimeout(() => {
                     history("/admin"); // Redirect to admin dashboard
                 }, 2000);
