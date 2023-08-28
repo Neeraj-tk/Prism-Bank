@@ -7,6 +7,7 @@ import RegisterForInternetBanking from './components/RegisterForInternetBanking'
 import Login from './components/Login';
 import DashBoard from './components/DashBoard';
 import { useState } from 'react';
+import Transaction from './components/Transaction';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
               <Route path='/' exact element={<HomePage  />}></Route>
               <Route path="/register" Component={Register}></Route>
               <Route path="/netbanking" Component={RegisterForInternetBanking}></Route>
+              <Route path="/profile/transaction" element={<Transaction setAccountNo={accountNo} loggedIn={loggedIn}></Transaction>}></Route>
               <Route path='/login' element ={<Login accountNo={accountNo} setAccountNo={setAccountNo} loggedIn={loggedIn} setLoggedIn={setLoggedIn}></Login>}></Route>
               <Route path='/profile' element ={<DashBoard accountNo={accountNo} setAccountNo={setAccountNo} loggedIn={loggedIn} setLoggedIn={setLoggedIn}></DashBoard>}></Route>
             </Routes>

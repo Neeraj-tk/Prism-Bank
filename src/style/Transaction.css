@@ -1,0 +1,12 @@
+.transaction-container{
+    width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: rgb(43, 54, 68);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color:antiquewhite;
+    margin: 0 auto;
+    margin-top: 25px;
+   
+}
